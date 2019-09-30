@@ -4,12 +4,20 @@ class Panier //extends Orange
 	private ArrayList<Orange> panierOrange;
 	private int nbMax, nbActuel;
 	
+	public Panier()
+	{
+		panierOrange = new ArrayList<Orange>();
+		nbMax = 0;
+		nbActuel = 0;
+	}
+	
 	public Panier(int n)
 	{
 		panierOrange = new ArrayList<Orange>();
 		nbMax = n;
 		nbActuel = 0;
 	}
+	
 	
 	public int getNbActuel()
 	{
@@ -25,10 +33,13 @@ class Panier //extends Orange
 	{
 		for(Orange o: panierOrange)
 		{
-			o.getOrigine();
-			o.getPrix();
-		}
-		
+			System.out.println(o.getOrigine());
+			System.out.println(o.getPrix());
+		}/*
+		for(Orange o: panierOrange)
+		{
+			System.out.println(o.getNbActuel());
+		}*/
 		return this.panierOrange;
 	}
 	
@@ -72,6 +83,36 @@ class Panier //extends Orange
 		}
 	}
 	
+	public boolean ajoute()
+	{
+		if(estPlein() == true)
+		{
+			System.out.println("PANIER PLEIN");
+			return false;
+		}
+		else
+		{
+			Panier p = new Panier();
+			return true;
+		}
+	}
+	
+	public boolean retire()
+	{
+		if(estVide() == true)
+		{
+			System.out.println("PANIER VIDE");
+			return false;
+		}
+		else
+		{
+			this.panierOrange.remove(this.panierOrange.size() - 1);
+			System.out.println("Orange retirée");
+			this.nbActuel--;
+			return true;
+		}
+	}
+	
 	public static void main(String[] args)
 	{
 		Panier p1 = new Panier(2);
@@ -82,6 +123,8 @@ class Panier //extends Orange
 		
 		p1.ajoute(o1);
 		p1.ajoute(o2);
+		p1.getListeOrange();
+		p1.retire();
 		
 		p1.getListeOrange();
 	}		
